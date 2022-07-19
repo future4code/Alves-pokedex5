@@ -1,11 +1,12 @@
 import React from "react";
-import { Router } from "react-router-dom";
+import {Router} from "./routes/Router"
+import {MainContainer} from "./StyledApp"
 
 function App() {
   return (
-    <div >
+    <MainContainer>
       <Router/>
-    </div>
+    </MainContainer>
   );
 }
 

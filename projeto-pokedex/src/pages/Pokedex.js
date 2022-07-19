@@ -6,8 +6,7 @@ function Poquedex() {
     const navigate = useNavigate()
   return (
     <div>
-      <h1>Poquedex</h1>
-      <button onClick={() => goToBack(navigate)}>Todos Pokémons</button>
+      <h1>Meus Pokémons</h1>      
       <button onClick={() => goToDetailPokemon(navigate)}>Detalhes</button>
     </div>
   );
