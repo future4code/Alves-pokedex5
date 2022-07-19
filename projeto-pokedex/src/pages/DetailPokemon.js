@@ -6,9 +6,7 @@ function DetailPokemon() {
   const navigate = useNavigate();
   return (
     <div>
-      <h1>Pokemons</h1>
-      <button onClick={() => goToListPokemons(navigate)}>Todos Pokémons</button>
-      <button onClick={() => goToBack(navigate)}>Pokedéx</button>
+      <h1>Pokemons detalhes</h1>
     </div>
   );
 }
