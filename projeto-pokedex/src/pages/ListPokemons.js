@@ -13,6 +13,7 @@ function ListPokemons() {
  // const [novaListaPokemon, setNovaListaPokemon] = useState([]);
 
   const {novaListaPokemon, setNovaListaPokemon} = useContext(GlobalContext);
+  const {pokedex, setPokedex} = useContext(GlobalContext)
 
   useEffect(() => {
     axios
@@ -44,6 +45,7 @@ function ListPokemons() {
     const userPokemons = pokedex
     userPokemons.push(pokemon)
     setPokedex(userPokemons)
+    alert("POKEMON CAPTURADO!")
     
     console.log(pokedex)
   }
@@ -58,7 +60,7 @@ function ListPokemons() {
         <CardPokemon key={pokemon.id}>          
           <p>{pokemon.name}</p>
         
-          <img src={pokemon.sprites.front_default} alt="Imagem do pokemon" />
+          <img src={pokemon.sprites.other.dream_world.front_default} alt="Imagem do pokemon" />
           <div>
             {pokemon.types.map((type, index) => {
               return <div key={index}>{type.type.name}</div>
