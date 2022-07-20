@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardPokemon, ContainerPokemon, MainCardPokemon } from "../components/StyledListPokemons.js";
-import { BASE_URL } from "../constants/BASE_URL.js";
+import { BASE_URL } from "../constants/BASE_URL";
 import { goToDetailPokemon } from "../routes/coordinator";
 import { GlobalContext } from "../global/GlobalContext"
 
@@ -39,6 +39,14 @@ function ListPokemons() {
         .catch((error) => {});
     });
   }, [listPokemons]);
+
+  const getPokemon = (pokemon) => {
+    const userPokemons = pokedex
+    userPokemons.push(pokemon)
+    setPokedex(userPokemons)
+    
+    console.log(pokedex)
+  }
   
 
   
@@ -57,7 +65,7 @@ function ListPokemons() {
             })}
           </div>
           <button onClick={() => goToDetailPokemon(navigate)}>Detalhes</button>          
-          <button>Capturar!</button>
+          <button onClick = {() => getPokemon(pokemon)}>Capturar!</button>
         </CardPokemon>
       );
     });
