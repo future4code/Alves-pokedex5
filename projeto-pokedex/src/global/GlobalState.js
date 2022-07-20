@@ -4,13 +4,14 @@ import React, { useState } from "react";
 import { GlobalContext } from "../global/GlobalContext";
 
 export default function GlobalState(props) {
-    const [novaListaPokemon, setNovaListaPokemon] = useState([]);
+  const [novaListaPokemon, setNovaListaPokemon] = useState([]);
+  const [pokedex, setPokedex] = useState([])
 
-  
-
-  const values = {
+    const values = {
     novaListaPokemon,
     setNovaListaPokemon,
+    pokedex,
+    setPokedex
   };
 
   const Provider = GlobalContext.Provider;
