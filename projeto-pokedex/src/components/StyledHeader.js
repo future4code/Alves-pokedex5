@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const NaviBar = styled.div`
-  height: 100px;
+  /* height: 100px; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* position: absolute;
   width: 100%;
+  /* position: absolute;
   height: 160px;
   left: 0px;
   top: 0px;
@@ -15,11 +15,14 @@ export const NaviBar = styled.div`
 
   background: #ffffff;
   img {
-    position: absolute;
-    width: 307px;
+    /* position: absolute; */
+    max-width: 307px;
+    min-width: 100px;
     height: 113px;
     left: 566px;
     top: 21px;
+    
+
   }
 `;
 export const ButtonPokedex = styled.button`
@@ -28,9 +31,10 @@ export const ButtonPokedex = styled.button`
   justify-content: center;
   align-items: center;
   padding: 4px 10px;
+  font-size: 2em;
 
   /* position: absolute; */
-  width: 287px;
+  /* width: 200px; */
   height: 74px;
   right: 10px;
   top: 41px;

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CardPokemon, ContainerPokemon, MainCardPokemon } from "../components/StyledListPokemons.js";
 import { BASE_URL } from "../constants/BASE_URL.js";
 import { goToDetailPokemon } from "../routes/coordinator";
 
@@ -24,7 +25,7 @@ function ListPokemons() {
     const listaPokemon = [];
     listPokemons.forEach((pokemon) => {
       axios
-        .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+        .get(`${BASE_URL}pokemon/${pokemon.name}`)
         .then((response) => {
           listaPokemon.push(response.data);
           if (listaPokemon.length === 20) {
@@ -34,28 +35,34 @@ function ListPokemons() {
         .catch((error) => {});
     });
   }, [listPokemons]);
-  console.log(novaListaPokemon);
+  
 
   
   const infoPokemon =
     novaListaPokemon &&
     novaListaPokemon.map((pokemon) => {
-      console.log(pokemon.types)
+      // console.log(pokemon)
       return (
-        <div key={pokemon.id}>
+        <CardPokemon key={pokemon.id}>          
           <p>{pokemon.name}</p>
-          <p>{pokemon.types["name"]}</p>
+        
           <img src={pokemon.sprites.front_default} alt="Imagem do pokemon" />
-        </div>
+          <div>
+            {pokemon.types.map((type, index) => {
+              return <div key={index}>{type.type.name}</div>
+            })}
+          </div>
+          <button onClick={() => goToDetailPokemon(navigate)}>Detalhes</button>          
+          <button>Capturar!</button>
+        </CardPokemon>
       );
     });
     
   return (
-    <div>
+    <MainCardPokemon>
       <h1>Lista de Pokemons</h1>
-      <button onClick={() => goToDetailPokemon(navigate)}>Detalhes</button>
-      {infoPokemon}
-    </div>
+      <ContainerPokemon>{infoPokemon}</ContainerPokemon>
+    </MainCardPokemon>
   );
 }
 export default ListPokemons;
