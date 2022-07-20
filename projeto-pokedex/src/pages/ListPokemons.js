@@ -1,15 +1,18 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardPokemon, ContainerPokemon, MainCardPokemon } from "../components/StyledListPokemons.js";
 import { BASE_URL } from "../constants/BASE_URL";
 import { goToDetailPokemon } from "../routes/coordinator";
+import { GlobalContext } from "../global/GlobalContext"
+
 
 function ListPokemons() {
   const navigate = useNavigate();
   const [listPokemons, setListPokemons] = useState([]);
-  const [novaListaPokemon, setNovaListaPokemon] = useState([]);
-  const [pokedex, setPokedex] = useState([])
+ // const [novaListaPokemon, setNovaListaPokemon] = useState([]);
+
+  const {novaListaPokemon, setNovaListaPokemon} = useContext(GlobalContext);
 
   useEffect(() => {
     axios
