@@ -1,28 +1,25 @@
 import styled from "styled-components";
 
 export const NaviBar = styled.div`
-  /* height: 100px; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  /* position: absolute;
-  height: 160px;
-  left: 0px;
-  top: 0px;
-  border: solid 1px black; */
-
-  background: #ffffff;
+  background-color: white;
+  height: 20vh;
+`;
+export const ContainerImg = styled.div`
+  position: relative;
+  width: 100%;
+  height: 20vh;
   img {
-    /* position: absolute; */
-    max-width: 307px;
-    min-width: 100px;
-    height: 113px;
-    left: 566px;
-    top: 21px;
-    
-
+    position: absolute;
+    width: 30%;
+    height: 15vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 export const ButtonPokedex = styled.button`
@@ -30,15 +27,65 @@ export const ButtonPokedex = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 4px 10px;
-  font-size: 2em;
-
-  /* position: absolute; */
-  /* width: 200px; */
-  height: 74px;
-  right: 10px;
-  top: 41px;
-
+  width: 15%;  
+  min-width: 80px;
+  left: 80%;
+  position: absolute;
+  height: 8vh;
+  top: 50%;
+  transform: translate(-20%, -50%);
+  color: white;
   background: #33a4f5;
   border-radius: 8px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 3vw;
+  line-height: 36px;
+  cursor: pointer;
+`;
+export const ButtonPokemons = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+
+  position: absolute;
+  min-width: 60px;
+  right: 80%;
+  /* height: 74px; */
+  top: 50%;
+  transform: translate(-20%, -50%);
+  color: #080707;
+  background-color: white;
+  border: none;  
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2vw;
+  line-height: 36px;
+  cursor: pointer;
+`;
+export const DeletePokedex = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 20%;  
+  min-width: 80px;
+  height: 8vh;
+  position: absolute;
+  left: 80%;
+  top: 50%;
+  transform: translate(-20%, -50%);
+  color: white;
+  background: #f0290e;
+  border-radius: 8px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2vw;
+  line-height: 36px;
+  cursor: pointer;
 `;

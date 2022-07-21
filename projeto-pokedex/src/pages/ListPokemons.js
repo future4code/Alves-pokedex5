@@ -55,7 +55,7 @@ function ListPokemons() {
   const infoPokemon =
     novaListaPokemon &&
     novaListaPokemon.map((pokemon) => {
-      // console.log(pokemon)
+      console.log(pokemon)
       return (
         <CardPokemon key={pokemon.id}>          
           <p>{pokemon.name}</p>
