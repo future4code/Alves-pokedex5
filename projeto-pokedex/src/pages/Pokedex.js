@@ -36,7 +36,6 @@ function Poquedex() {
     <div>
       <h1>Meus Pokémons</h1>
       <ContainerPokemon>{myPokemons}</ContainerPokemon>
-      <button onClick={() => goToDetailPokemon(navigate)}>Detalhes</button>
     </div>
   );
 }

@@ -18,6 +18,7 @@ import TypePokemon from "../components/TypePokemon.js";
 function ListPokemons() {
   const navigate = useNavigate();
   const [listPokemons, setListPokemons] = useState([]);
+  const [capturedPokemons, setCapturedPokemons] = useState([])
 
   const { novaListaPokemon, setNovaListaPokemon } = useContext(GlobalContext);
   const { pokedex, setPokedex } = useContext(GlobalContext);
@@ -61,7 +62,11 @@ function ListPokemons() {
     //   setPokedex(JSON.parse(localStorage.getItem("pokedex")));
     localStorage.setItem("pokedex", JSON.stringify(pokedex))
 
-    console.log(pokedex);
+    let pokemonInfo = capturedPokemons
+    pokemonInfo.push(pokemon.name)
+    setCapturedPokemons(pokemonInfo)
+
+    alert("POKEMON CAPTURADO!");
   };
 
   const infoPokemon =
