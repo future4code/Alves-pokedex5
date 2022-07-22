@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import {
-  defineBackgroundColorCard,
-  defineBackgroundColor,
-} from "./BackgroundPokemons";
+import { defineBackgroundColorCard } from "./BackgroundPokemons";
 
 export const MainCardPokemon = styled.div`
   display: flex;
@@ -23,8 +20,7 @@ export const CardPokemon = styled.div`
   min-width: 300px;
   height: 210px;
   left: 0px;
-  top: 0px;
-  /* background: #729f92; */
+  top: 0px;  
   background: ${(props) => defineBackgroundColorCard(props.typePokemon)};
   border-radius: 12px;
   margin: 10px;
@@ -57,7 +53,7 @@ export const ButtonCapturar = styled.button`
   width: 146px;
   height: 38px;
   border-radius: 8px;
-  border: none;  
+  border: none;
 `;
 export const CardIdName = styled.div`
   display: flex;
@@ -73,19 +69,13 @@ export const Type = styled.div`
   display: flex;
   margin: 10px;
   margin-right: 10px;
-
-  div {
-    background: ${(props) => defineBackgroundColor(props.typePokemon)};
-    margin-right: 10px;
-    text-transform: capitalize;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 5px 8px;
-    gap: 17px;
-    border-radius: 8px;
-  }
+    
+`;
+export const ImgType = styled.img`
+  margin: 10px;   
+  padding: 5px 8px;
+  gap: 17px;
+  border-radius: 8px;
 `;
 
 export const ContainerPokemon = styled.div`
