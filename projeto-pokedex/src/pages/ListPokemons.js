@@ -17,6 +17,7 @@ import { GlobalContext } from "../global/GlobalContext";
 function ListPokemons() {
   const navigate = useNavigate();
   const [listPokemons, setListPokemons] = useState([]);
+  const [capturedPokemons, setCapturedPokemons] = useState([])
 
   const { novaListaPokemon, setNovaListaPokemon } = useContext(GlobalContext);
   const { pokedex, setPokedex } = useContext(GlobalContext);
@@ -53,9 +54,12 @@ function ListPokemons() {
     const userPokemons = pokedex;
     userPokemons.push(pokemon);
     setPokedex(userPokemons);
-    alert("POKEMON CAPTURADO!");
 
-    console.log(pokedex);
+    let pokemonInfo = capturedPokemons
+    pokemonInfo.push(pokemon.name)
+    setCapturedPokemons(pokemonInfo)
+
+    alert("POKEMON CAPTURADO!");
   };
 
   const infoPokemon =
@@ -68,8 +72,15 @@ function ListPokemons() {
         return-1
       }
     }).map((pokemon) => {
-      console.log(pokemon);
-      console.log(pokemon.types[0].type.name);
+
+      console.log(capturedPokemons)
+      let button
+      if (capturedPokemons.includes(pokemon.name)){
+        button = <ButtonCapturar onClick = {() => getPokemon(pokemon)}>Remover!</ButtonCapturar>
+      } else {
+        button =<ButtonCapturar onClick = {() => getPokemon(pokemon)}>Capturar!</ButtonCapturar>
+      }
+
       return (
         <CardPokemon key={pokemon.id} typePokemon={pokemon.types[0].type.name}>
           <img
@@ -81,18 +92,15 @@ function ListPokemons() {
             <h3>{pokemon.name}</h3>
           </CardIdName>
           <Type typePokemon={pokemon.types[0].type.name}>                      
-            {pokemon.types.map((type, index) => {
-              console.log(type);              
+            {pokemon.types.map((type, index) => {      
               return <div key={index}>{type.type.name}</div>;
             })}
           </Type>
           <CardButton>
-            <button onClick={() => goToDetailPokemon(navigate)}>
+            <ButtonCapturar onClick={() => goToDetailPokemon(navigate)}>
               Detalhes
-            </button>
-            <ButtonCapturar onClick={() => getPokemon(pokemon)}>
-              Capturar!
             </ButtonCapturar>
+            {button}
           </CardButton>
         </CardPokemon>
       );
