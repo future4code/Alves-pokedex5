@@ -1,23 +1,29 @@
 import axios from "axios";
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { CardPokemon, ContainerPokemon, MainCardPokemon } from "../components/StyledListPokemons.js";
+import {
+  ButtonCapturar,
+  CardButton,
+  CardIdName,
+  CardPokemon,
+  ContainerPokemon,
+  MainCardPokemon,
+  Type,
+} from "../components/StyledListPokemons.js";
 import { BASE_URL } from "../constants/BASE_URL";
 import { goToDetailPokemon } from "../routes/coordinator";
-import { GlobalContext } from "../global/GlobalContext"
-
+import { GlobalContext } from "../global/GlobalContext";
 
 function ListPokemons() {
   const navigate = useNavigate();
   const [listPokemons, setListPokemons] = useState([]);
- // const [novaListaPokemon, setNovaListaPokemon] = useState([]);
 
-  const {novaListaPokemon, setNovaListaPokemon} = useContext(GlobalContext);
-  const {pokedex, setPokedex} = useContext(GlobalContext)
+  const { novaListaPokemon, setNovaListaPokemon } = useContext(GlobalContext);
+  const { pokedex, setPokedex } = useContext(GlobalContext);
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}pokemon?limit=20&offset=0`)
+      .get(`${BASE_URL}pokemon?limit=30&offset=0`)
       .then((response) => {
         // console.log(response.data.results)
         setListPokemons(response.data.results);
@@ -39,39 +45,59 @@ function ListPokemons() {
         })
         .catch((error) => {});
     });
+    const pokes = JSON.stringify(listPokemons);
+    pokes && localStorage.getItem("listPokemons", pokes);
   }, [listPokemons]);
 
   const getPokemon = (pokemon) => {
-    const userPokemons = pokedex
-    userPokemons.push(pokemon)
-    setPokedex(userPokemons)
-    alert("POKEMON CAPTURADO!")
-    
-    console.log(pokedex)
-  }
-  
+    const userPokemons = pokedex;
+    userPokemons.push(pokemon);
+    setPokedex(userPokemons);
+    alert("POKEMON CAPTURADO!");
 
-  
+    console.log(pokedex);
+  };
+
   const infoPokemon =
     novaListaPokemon &&
-    novaListaPokemon.map((pokemon) => {
-      console.log(pokemon)
+    novaListaPokemon.sort(function (a,b) {
+      if (a.id > b.id) {
+        return 1
+      }
+      if (a.id < b.id) {
+        return-1
+      }
+    }).map((pokemon) => {
+      console.log(pokemon);
+      console.log(pokemon.types[0].type.name);
       return (
-        <CardPokemon key={pokemon.id}>          
-          <p>{pokemon.name}</p>
-        
-          <img src={pokemon.sprites.other.dream_world.front_default} alt="Imagem do pokemon" />
-          <div>
+        <CardPokemon key={pokemon.id} typePokemon={pokemon.types[0].type.name}>
+          <img
+            src={pokemon.sprites.other.dream_world.front_default}
+            alt="Imagem do pokemon"
+          />
+          <CardIdName>
+            #{pokemon.id}
+            <h3>{pokemon.name}</h3>
+          </CardIdName>
+          <Type typePokemon={pokemon.types[0].type.name}>                      
             {pokemon.types.map((type, index) => {
-              return <div key={index}>{type.type.name}</div>
+              console.log(type);              
+              return <div key={index}>{type.type.name}</div>;
             })}
-          </div>
-          <button onClick={() => goToDetailPokemon(navigate)}>Detalhes</button>          
-          <button onClick = {() => getPokemon(pokemon)}>Capturar!</button>
+          </Type>
+          <CardButton>
+            <button onClick={() => goToDetailPokemon(navigate)}>
+              Detalhes
+            </button>
+            <ButtonCapturar onClick={() => getPokemon(pokemon)}>
+              Capturar!
+            </ButtonCapturar>
+          </CardButton>
         </CardPokemon>
       );
     });
-    
+
   return (
     <MainCardPokemon>
       <h1>Lista de Pokemons</h1>
