@@ -1,34 +1,36 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../global/GlobalContext";
-import {goToDetailPokemon, goToBack} from "../routes/coordinator"
-import { CardPokemon, ContainerPokemon } from "../components/StyledListPokemons";
+import { goToDetailPokemon, goToBack } from "../routes/coordinator";
+import {
+  CardPokemon,
+  ContainerPokemon,
+} from "../components/StyledListPokemons";
 
 function Poquedex() {
+  const { pokedex, setPokedex } = useContext(GlobalContext);
+  console.log(pokedex);
 
-  const {pokedex, setPokedex } = useContext(GlobalContext)
-  console.log(pokedex)
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
+  // const listaLocal = JSON.parse(localStorage.getItem("pokedex"))
 
   const myPokemons = pokedex.map((pokemon) => {
     return (
-    <CardPokemon key={pokemon.id}>          
-    <p>{pokemon.name}</p>
-  
-    <img src={pokemon.sprites.front_default} alt="Imagem do pokemon" />
-    <div>
-      {pokemon.types.map((type, index) => {
-        return <div key={index}>{type.type.name}</div>
-      })}
-    </div>
-    <button onClick={() => goToDetailPokemon(navigate)}>Detalhes</button>          
-    <button onClick >Remover</button>
-  </CardPokemon>
-    )
-  })
+      <CardPokemon key={pokemon.id}>
+        <p>{pokemon.name}</p>
 
-
+        <img src={pokemon.sprites.front_default} alt="Imagem do pokemon" />
+        <div>
+          {pokemon.types.map((type, index) => {
+            return <div key={index}>{type.type.name}</div>;
+          })}
+        </div>
+        <button onClick={() => goToDetailPokemon(navigate)}>Detalhes</button>
+        <button>Remover</button>
+      </CardPokemon>
+    );
+  });
 
   return (
     <div>
@@ -38,4 +40,4 @@ function Poquedex() {
     </div>
   );
 }
-export default Poquedex
+export default Poquedex;

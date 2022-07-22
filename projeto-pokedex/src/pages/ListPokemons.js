@@ -13,6 +13,7 @@ import {
 import { BASE_URL } from "../constants/BASE_URL";
 import { goToDetailPokemon } from "../routes/coordinator";
 import { GlobalContext } from "../global/GlobalContext";
+import TypePokemon from "../components/TypePokemon.js";
 
 function ListPokemons() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function ListPokemons() {
         setListPokemons(response.data.results);
       })
       .catch((error) => {
-        // console.log(error.response)
+        console.log(error.response)
       });
   }, []);
   useEffect(() => {
@@ -39,11 +40,13 @@ function ListPokemons() {
         .get(`${BASE_URL}pokemon/${pokemon.name}`)
         .then((response) => {
           listaPokemon.push(response.data);
-          if (listaPokemon.length === 20) {
+          if (listaPokemon.length === 30) {
             setNovaListaPokemon(listaPokemon);
           }
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log(error.response)
+        });
     });
     const pokes = JSON.stringify(listPokemons);
     pokes && localStorage.getItem("listPokemons", pokes);
@@ -52,51 +55,61 @@ function ListPokemons() {
   const getPokemon = (pokemon) => {
     const userPokemons = pokedex;
     userPokemons.push(pokemon);
-    setPokedex(userPokemons);
+    // setPokedex(userPokemons)
     alert("POKEMON CAPTURADO!");
+    // localStorage.getItem("pokedex") &&
+    //   setPokedex(JSON.parse(localStorage.getItem("pokedex")));
+    localStorage.setItem("pokedex", JSON.stringify(pokedex))
 
     console.log(pokedex);
   };
 
   const infoPokemon =
     novaListaPokemon &&
-    novaListaPokemon.sort(function (a,b) {
-      if (a.id > b.id) {
-        return 1
-      }
-      if (a.id < b.id) {
-        return-1
-      }
-    }).map((pokemon) => {
-      console.log(pokemon);
-      console.log(pokemon.types[0].type.name);
-      return (
-        <CardPokemon key={pokemon.id} typePokemon={pokemon.types[0].type.name}>
-          <img
-            src={pokemon.sprites.other.dream_world.front_default}
-            alt="Imagem do pokemon"
-          />
-          <CardIdName>
-            #{pokemon.id}
-            <h3>{pokemon.name}</h3>
-          </CardIdName>
-          <Type typePokemon={pokemon.types[0].type.name}>                      
-            {pokemon.types.map((type, index) => {
-              console.log(type);              
-              return <div key={index}>{type.type.name}</div>;
-            })}
-          </Type>
-          <CardButton>
-            <button onClick={() => goToDetailPokemon(navigate)}>
-              Detalhes
-            </button>
-            <ButtonCapturar onClick={() => getPokemon(pokemon)}>
-              Capturar!
-            </ButtonCapturar>
-          </CardButton>
-        </CardPokemon>
-      );
-    });
+    novaListaPokemon
+      .sort(function (a, b) {
+        if (a.id > b.id) {
+          return 1;
+        }
+        if (a.id < b.id) {
+          return -1;
+        }
+      })
+      .map((pokemon) => {
+        console.log(pokemon);
+        console.log(pokemon.types[0].type.name);
+        return (
+          <CardPokemon
+            key={pokemon.id}
+            typePokemon={pokemon.types[0]?.type.name}
+          >
+            <img
+              src={pokemon.sprites?.other.dream_world.front_default}
+              alt={pokemon.name}
+            />
+            <CardIdName>
+              #{pokemon.id}
+              <h3>{pokemon.name}</h3>
+            </CardIdName>
+            <Type typePokemon={pokemon.types[0]?.type.name}>
+              {pokemon.types.map((type, index) => {
+                console.log(type);
+                let typePokemon=type.type.name
+                // return <div key={index}>{type.type.name}</div>;
+                return <TypePokemon key={index} typePokemon={typePokemon}/>
+              })}
+            </Type>
+            <CardButton>
+              <button onClick={() => goToDetailPokemon(navigate)}>
+                Detalhes
+              </button>
+              <ButtonCapturar onClick={() => getPokemon(pokemon)}>
+                Capturar!
+              </ButtonCapturar>
+            </CardButton>
+          </CardPokemon>
+        );
+      });
 
   return (
     <MainCardPokemon>
