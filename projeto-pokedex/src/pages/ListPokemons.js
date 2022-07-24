@@ -22,8 +22,9 @@ import TypePokemon from "../components/TypePokemon.js";
 function ListPokemons() {
   const navigate = useNavigate();
   const [listPokemons, setListPokemons] = useState([]);
-  const [capturedPokemons, setCapturedPokemons] = useState([]);
 
+
+  const {capturedPokemons, setCapturedPokemons} = useContext(GlobalContext)
   const { novaListaPokemon, setNovaListaPokemon } = useContext(GlobalContext);
   const { pokedex, setPokedex } = useContext(GlobalContext);
 
@@ -31,13 +32,13 @@ function ListPokemons() {
     axios
       .get(`${BASE_URL}pokemon?limit=30&offset=0`)
       .then((response) => {
-       
         setListPokemons(response.data.results);
       })
       .catch((error) => {
         console.log(error.response);
       });
   }, []);
+  
   useEffect(() => {
     const listaPokemon = [];
     listPokemons.forEach((pokemon) => {
@@ -55,20 +56,30 @@ function ListPokemons() {
     pokes && localStorage.getItem("listPokemons", pokes);
   }, [listPokemons]);
 
-  const getPokemon = (pokemon) => {
-    const userPokemons = pokedex;
-    userPokemons.push(pokemon);
 
-    alert("POKEMON CAPTURADO!");
+  const captureOrRemovePokemon = (pokemon, id) => {
+    let newCapturedPokemons = JSON.parse(JSON.stringify(capturedPokemons))
+    let pokedexCopy = pokedex
 
-    localStorage.setItem("pokedex", JSON.stringify(pokedex));
+    if (id in newCapturedPokemons) {
+      delete newCapturedPokemons[id]
+      delete pokedexCopy[id]      
 
-    let pokemonInfo = capturedPokemons;
-    pokemonInfo.push(pokemon.name);
-    setCapturedPokemons(pokemonInfo);
+    } else {
+      newCapturedPokemons[id] = true;
+      pokedexCopy[id] = pokemon;
+      alert("POKEMON CAPTURADO!");
+    }
 
-    alert("POKEMON CAPTURADO!");
+    setCapturedPokemons(newCapturedPokemons)
+    localStorage.setItem("captured", JSON.stringify(capturedPokemons))
+    
+    
+    localStorage.setItem("pokedex", JSON.stringify(pokedex))
+
+
   };
+
 
   const infoPokemon =
     novaListaPokemon &&
@@ -82,6 +93,9 @@ function ListPokemons() {
         }
       })
       .map((pokemon) => {
+
+        let isPokemonCaptured = Boolean(pokemon.id in capturedPokemons)
+
         return (
           <CardPokemon
             key={pokemon.id}
@@ -100,16 +114,19 @@ function ListPokemons() {
             </CardIdName>
             <Type typePokemon={pokemon.types[0]?.type.name}>
               {pokemon.types.map((type, index) => {
-                let typePokemon = type.type.name;
-                return <TypePokemon key={index} typePokemon={typePokemon} />;
+
+                let typePokemon=type.type.name
+                return <TypePokemon key={index} typePokemon={typePokemon}/>
+
               })}
             </Type>
             <CardButton>
               <ButtonDetail onClick={() => goToDetailPokemon(navigate)}>
                 Detalhes
-              </ButtonDetail>
-              <ButtonCapturar onClick={() => getPokemon(pokemon)}>
-                Capturar!
+              </button>
+              <ButtonCapturar onClick={() => captureOrRemovePokemon(pokemon, pokemon.id)}>
+                {isPokemonCaptured ? "Remover " : "Capturar"} 
+
               </ButtonCapturar>
             </CardButton>
           </CardPokemon>

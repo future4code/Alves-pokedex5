@@ -1,36 +1,48 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../global/GlobalContext";
-import { goToDetailPokemon, goToBack } from "../routes/coordinator";
-import {
-  CardPokemon,
-  ContainerPokemon,
-} from "../components/StyledListPokemons";
+import {goToDetailPokemon, goToBack} from "../routes/coordinator"
+import { CardPokemon, ContainerPokemon, CardButton, CardIdName, Type } from "../components/StyledListPokemons";
 
 function Poquedex() {
-  const { pokedex, setPokedex } = useContext(GlobalContext);
-  console.log(pokedex);
 
-  const navigate = useNavigate();
+  const {pokedex, setPokedex } = useContext(GlobalContext)
+  console.log(pokedex)
 
-  // const listaLocal = JSON.parse(localStorage.getItem("pokedex"))
+  const navigate = useNavigate()
 
-  const myPokemons = pokedex.map((pokemon) => {
+  const myPokemons = Object.keys(pokedex).map((pokemonId) => {
+
+    let pokemon = pokedex[pokemonId]
+
     return (
-      <CardPokemon key={pokemon.id}>
-        <p>{pokemon.name}</p>
-
-        <img src={pokemon.sprites.front_default} alt="Imagem do pokemon" />
-        <div>
-          {pokemon.types.map((type, index) => {
+      <CardPokemon key={pokemon.id} typePokemon={pokemon.types[0].type.name}>
+        <img
+          src={pokemon.sprites.other.dream_world.front_default}
+          alt="Imagem do pokemon"
+        />
+        <CardIdName>
+          #{pokemon.id}
+          <h3>{pokemon.name}</h3>
+        </CardIdName>
+        <Type typePokemon={pokemon.types[0].type.name}>                      
+          {pokemon.types.map((type, index) => {      
             return <div key={index}>{type.type.name}</div>;
           })}
-        </div>
-        <button onClick={() => goToDetailPokemon(navigate)}>Detalhes</button>
-        <button>Remover</button>
+        </Type>
+        <CardButton>
+          <button onClick={() => goToDetailPokemon(navigate)}>
+            Detalhes
+          </button>
+          <button>
+            Remover
+          </button>
+        </CardButton>
       </CardPokemon>
     );
   });
+
+
 
   return (
     <div>
@@ -39,4 +51,4 @@ function Poquedex() {
     </div>
   );
 }
-export default Poquedex;
+export default Poquedex
