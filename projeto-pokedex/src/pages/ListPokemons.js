@@ -1,4 +1,5 @@
 import axios from "axios";
+import Pokedex from "./Pokedex.js";
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -77,7 +78,8 @@ function ListPokemons() {
     
     localStorage.setItem("pokedex", JSON.stringify(pokedex))
 
-
+    
+    
   };
 
 
@@ -97,6 +99,7 @@ function ListPokemons() {
         let isPokemonCaptured = Boolean(pokemon.id in capturedPokemons)
 
         return (
+
           <CardPokemon
             key={pokemon.id}
             typePokemon={pokemon.types[0]?.type.name}
@@ -123,10 +126,9 @@ function ListPokemons() {
             <CardButton>
               <ButtonDetail onClick={() => goToDetailPokemon(navigate)}>
                 Detalhes
-              </button>
+              </ButtonDetail>
               <ButtonCapturar onClick={() => captureOrRemovePokemon(pokemon, pokemon.id)}>
                 {isPokemonCaptured ? "Remover " : "Capturar"} 
-
               </ButtonCapturar>
             </CardButton>
           </CardPokemon>

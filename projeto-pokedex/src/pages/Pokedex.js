@@ -2,41 +2,66 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../global/GlobalContext";
 import {goToDetailPokemon, goToBack} from "../routes/coordinator"
-import { CardPokemon, ContainerPokemon, CardButton, CardIdName, Type } from "../components/StyledListPokemons";
+import {
+  ButtonCapturar,
+  ButtonDetail,
+  CardButton,
+  CardIdName,
+  CardPokemon,
+  ContainerPokemon,
+  ImgPokebola,
+  ImgPokemon,
+  Type,
+} from "../components/StyledListPokemons.js";
+import TypePokemon from "../components/TypePokemon.js";
+import pokebola2 from "../imageTypes/pokebola2.png";
 
-function Poquedex() {
+function Pokedex(props) {
 
   const {pokedex, setPokedex } = useContext(GlobalContext)
+  const {capturedPokemons, setCapturedPokemons} = useContext(GlobalContext)
+
   console.log(pokedex)
 
   const navigate = useNavigate()
 
   const myPokemons = Object.keys(pokedex).map((pokemonId) => {
 
+    let isPokemonCaptured = Boolean(pokemonId in capturedPokemons)
     let pokemon = pokedex[pokemonId]
 
+
     return (
-      <CardPokemon key={pokemon.id} typePokemon={pokemon.types[0].type.name}>
-        <img
-          src={pokemon.sprites.other.dream_world.front_default}
-          alt="Imagem do pokemon"
+      <CardPokemon
+        key={pokemon.id}
+        typePokemon={pokemon.types[0]?.type.name}
+      >
+        <ImgPokebola src={pokebola2} />
+        <ImgPokemon
+          src={
+            pokemon["sprites"]["other"]["official-artwork"]["front_default"]
+          }
+          alt={pokemon.name}
         />
         <CardIdName>
           #{pokemon.id}
           <h3>{pokemon.name}</h3>
         </CardIdName>
-        <Type typePokemon={pokemon.types[0].type.name}>                      
-          {pokemon.types.map((type, index) => {      
-            return <div key={index}>{type.type.name}</div>;
+        <Type typePokemon={pokemon.types[0]?.type.name}>
+          {pokemon.types.map((type, index) => {
+
+            let typePokemon=type.type.name
+            return <TypePokemon key={index} typePokemon={typePokemon}/>
+
           })}
         </Type>
         <CardButton>
-          <button onClick={() => goToDetailPokemon(navigate)}>
+          <ButtonDetail onClick={() => goToDetailPokemon(navigate)}>
             Detalhes
-          </button>
-          <button>
-            Remover
-          </button>
+          </ButtonDetail>
+          <ButtonCapturar>
+            Remover 
+          </ButtonCapturar>
         </CardButton>
       </CardPokemon>
     );
@@ -51,4 +76,4 @@ function Poquedex() {
     </div>
   );
 }
-export default Poquedex
+export default Pokedex
