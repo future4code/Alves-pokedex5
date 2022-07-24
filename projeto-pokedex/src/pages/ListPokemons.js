@@ -3,13 +3,17 @@ import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ButtonCapturar,
+  ButtonDetail,
   CardButton,
   CardIdName,
   CardPokemon,
   ContainerPokemon,
+  ImgPokebola,
+  ImgPokemon,
   MainCardPokemon,
   Type,
 } from "../components/StyledListPokemons.js";
+import pokebola2 from "../imageTypes/pokebola2.png";
 import { BASE_URL } from "../constants/BASE_URL";
 import { goToDetailPokemon } from "../routes/coordinator";
 import { GlobalContext } from "../global/GlobalContext";
@@ -18,6 +22,7 @@ import TypePokemon from "../components/TypePokemon.js";
 function ListPokemons() {
   const navigate = useNavigate();
   const [listPokemons, setListPokemons] = useState([]);
+
 
   const {capturedPokemons, setCapturedPokemons} = useContext(GlobalContext)
   const { novaListaPokemon, setNovaListaPokemon } = useContext(GlobalContext);
@@ -30,9 +35,10 @@ function ListPokemons() {
         setListPokemons(response.data.results);
       })
       .catch((error) => {
-        console.log(error.response)
+        console.log(error.response);
       });
   }, []);
+  
   useEffect(() => {
     const listaPokemon = [];
     listPokemons.forEach((pokemon) => {
@@ -44,9 +50,7 @@ function ListPokemons() {
             setNovaListaPokemon(listaPokemon);
           }
         })
-        .catch((error) => {
-          console.log(error.response)
-        });
+        .catch((error) => {});
     });
     const pokes = JSON.stringify(listPokemons);
     pokes && localStorage.getItem("listPokemons", pokes);
@@ -73,6 +77,7 @@ function ListPokemons() {
     
     localStorage.setItem("pokedex", JSON.stringify(pokedex))
 
+
   };
 
 
@@ -96,8 +101,11 @@ function ListPokemons() {
             key={pokemon.id}
             typePokemon={pokemon.types[0]?.type.name}
           >
-            <img
-              src={pokemon.sprites?.other.dream_world.front_default}
+            <ImgPokebola src={pokebola2} />
+            <ImgPokemon
+              src={
+                pokemon["sprites"]["other"]["official-artwork"]["front_default"]
+              }
               alt={pokemon.name}
             />
             <CardIdName>
@@ -106,16 +114,19 @@ function ListPokemons() {
             </CardIdName>
             <Type typePokemon={pokemon.types[0]?.type.name}>
               {pokemon.types.map((type, index) => {
+
                 let typePokemon=type.type.name
                 return <TypePokemon key={index} typePokemon={typePokemon}/>
+
               })}
             </Type>
             <CardButton>
-              <button onClick={() => goToDetailPokemon(navigate)}>
+              <ButtonDetail onClick={() => goToDetailPokemon(navigate)}>
                 Detalhes
               </button>
               <ButtonCapturar onClick={() => captureOrRemovePokemon(pokemon, pokemon.id)}>
                 {isPokemonCaptured ? "Remover " : "Capturar"} 
+
               </ButtonCapturar>
             </CardButton>
           </CardPokemon>

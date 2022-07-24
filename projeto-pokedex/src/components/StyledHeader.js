@@ -7,16 +7,14 @@ export const NaviBar = styled.div`
   align-items: center;
   width: 100%;
   background-color: white;
-  height: 20vh;
+  height: 10rem;
+  position: relative;
 `;
 export const ContainerImg = styled.div`
-  position: relative;
-  width: 100%;
-  height: 20vh;
   img {
     position: absolute;
-    width: 30%;
-    height: 15vh;
+    width: 19.188rem;
+    height: 7.063rem;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -37,11 +35,12 @@ export const ButtonPokedex = styled.button`
   color: white;
   background: #33a4f5;
   border-radius: 8px;
+  border: none;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
   font-size: 3vw;
-  line-height: 36px;
+  line-height: 2.25rem;
   cursor: pointer;
 `;
 export const ButtonPokemons = styled.button`
@@ -49,12 +48,11 @@ export const ButtonPokemons = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 15%;
-
+  width: 13.125rem;
+  text-decoration-line: underline;
   position: absolute;
-  min-width: 60px;
-  right: 80%;
-  /* height: 74px; */
+  min-width: 3.75rem;
+  right: 75%;  
   top: 50%;
   transform: translate(-20%, -50%);
   color: #080707;
@@ -63,8 +61,8 @@ export const ButtonPokemons = styled.button`
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
-  font-size: 2vw;
-  line-height: 36px;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
   cursor: pointer;
 `;
 export const DeletePokedex = styled.button`
@@ -73,7 +71,7 @@ export const DeletePokedex = styled.button`
   justify-content: center;
   align-items: center;
   width: 20%;  
-  min-width: 80px;
+  min-width: 5rem;
   height: 8vh;
   position: absolute;
   left: 80%;
@@ -81,11 +79,11 @@ export const DeletePokedex = styled.button`
   transform: translate(-20%, -50%);
   color: white;
   background: #f0290e;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
   font-size: 2vw;
-  line-height: 36px;
+  line-height: 2.25rem;
   cursor: pointer;
 `;

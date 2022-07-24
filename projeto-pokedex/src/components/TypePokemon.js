@@ -17,110 +17,110 @@ import Rock from "../imageTypes/rock.png";
 import Steel from "../imageTypes/steel.png";
 import Water from "../imageTypes/water.png";
 
-import { ImgType } from "./StyledListPokemons";
+import { DivTypImg, ImgType } from "./StyledListPokemons";
 
 const TypePokemon = ({typePokemon}) => {
     if (typePokemon === "poison") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Poison}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "bug") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Bug}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "dark") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Dark}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "dragon") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Dragon}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "electric") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Electric}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "fairy") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Fairy}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "fighting") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Fighting}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "fire") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Fire}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "flying") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Flying}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "grass") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Grass}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "ground") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Ground}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "ice") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Ice}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "normal") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Normal}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "psychic") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Psychic}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "rock") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Rock}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "steel") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Steel}/>
-            </>
+            </DivTypImg>
         )
     } if (typePokemon === "water") {
         return (
-            <>
+            <DivTypImg>
                 <ImgType src={Water}/>
-            </>
+            </DivTypImg>
         )
     }
 };
