@@ -49,6 +49,7 @@ export const CardButton = styled.div`
   margin: 0.625rem;
   margin-top: 15%;
 `;
+
 export const ButtonDetail = styled.button`
   width: 4.625rem;
   height: 1.5rem;
@@ -64,6 +65,7 @@ export const ButtonDetail = styled.button`
   cursor: pointer;
   color: #ffffff;
 `;
+
 export const ButtonCapturar = styled.button`
   display: flex;
   flex-direction: row;
