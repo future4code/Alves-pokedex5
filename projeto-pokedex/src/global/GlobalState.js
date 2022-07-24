@@ -5,13 +5,16 @@ import { GlobalContext } from "../global/GlobalContext";
 
 export default function GlobalState(props) {
   const [novaListaPokemon, setNovaListaPokemon] = useState([]);
-  const [pokedex, setPokedex] = useState([])
+  const [pokedex, setPokedex] = useState({})
+  const [capturedPokemons, setCapturedPokemons] = useState({})
 
     const values = {
     novaListaPokemon,
     setNovaListaPokemon,
     pokedex,
-    setPokedex
+    setPokedex,
+    capturedPokemons,
+    setCapturedPokemons,
   };
 
   useEffect(()=> {
