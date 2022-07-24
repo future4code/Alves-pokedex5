@@ -77,9 +77,7 @@ function ListPokemons() {
     
     
     localStorage.setItem("pokedex", JSON.stringify(pokedex))
-
-    
-    
+       
   };
 
 
