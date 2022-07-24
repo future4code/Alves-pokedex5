@@ -17,7 +17,7 @@ const Header = () => {
     } else if (window.location.pathname === "/pokedex") {
       return (
         <ButtonPokemons onClick={() => goToListPokemons(navigate)}>
-          Todos Pokémons
+          <u>{"< "}Todos Pokémons</u>
         </ButtonPokemons>
       );
     }
@@ -25,7 +25,7 @@ const Header = () => {
       return(
         <div>
         <ButtonPokemons onClick={() => goToListPokemons(navigate)}>
-          Todos Pokémons
+        {"< "}Todos Pokémons
         </ButtonPokemons>
         <DeletePokedex>Excluir da Pokédex</DeletePokedex>
       </div>
@@ -36,8 +36,8 @@ const Header = () => {
     <NaviBar>
       <ContainerImg>
         <img alt="pokeapi-logo" src={logoImg} />
-      {showButton()}
       </ContainerImg>
+      {showButton()}
     </NaviBar>
   );
 };
