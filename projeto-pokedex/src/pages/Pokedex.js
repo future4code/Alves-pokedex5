@@ -25,9 +25,18 @@ function Pokedex(props) {
 
   const navigate = useNavigate()
 
+  const removeFromPokedex = (id) => {
+    let newCapturedPokemons = JSON.parse(JSON.stringify(capturedPokemons))
+    let pokedexCopy = pokedex
+ 
+    delete pokedexCopy[id]    
+    setCapturedPokemons(newCapturedPokemons)
+    
+    localStorage.setItem("pokedex", JSON.stringify(pokedex))
+  }
+
   const myPokemons = Object.keys(pokedex).map((pokemonId) => {
 
-    let isPokemonCaptured = Boolean(pokemonId in capturedPokemons)
     let pokemon = pokedex[pokemonId]
 
 
@@ -59,7 +68,7 @@ function Pokedex(props) {
           <ButtonDetail onClick={() => goToDetailPokemon(navigate)}>
             Detalhes
           </ButtonDetail>
-          <ButtonCapturar>
+          <ButtonCapturar onClick={() => removeFromPokedex(pokemon.id)}>
             Remover 
           </ButtonCapturar>
         </CardButton>
