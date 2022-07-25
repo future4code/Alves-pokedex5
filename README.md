@@ -1,16 +1,26 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Gilead Raab
+- Klebson Bicalho
+- Raiza Gomes da Silva
+ 
 
 Link do Surge: www.link.com.br
 
+Tecnologias utilizadas:
+- React
+- Javascript
+- Styled components
+- Axios
+
 O que funciona:
-- Item 1
-- Item 2
+- Requisições a API
+- Carregar pokemons ao abrir a pagina
+- Capturar pokemons
+- Exibir pokemons capturados na Pokedex
+- Remover pokemons da pokedex tanto a partir da pagina inicial quanto na pokedex
 
 O que não funciona: 
-- Item 3
-- Item 4
+- Ao recarregar a pagina o botão remover dos pokemons capturados reseta para capturar
+- Página de detalhes do pokemon
