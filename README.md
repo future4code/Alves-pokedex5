@@ -6,7 +6,7 @@ Nome dos integrantes:
 - Raiza Gomes da Silva
  
 
-Link do Surge: www.link.com.br
+Link do Surge: https://lowly-tongue.surge.sh/
 
 Tecnologias utilizadas:
 - React
